@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BackgroundTexture from '../components/BackgroundTexture.astro';
+import AmbientGlowSystem from '../components/AmbientGlowSystem.astro';
+import Navbar from '../components/Navbar.astro';
+import AnimatedHero from '../components/react/AnimatedHero.jsx';
+import VslSection from '../components/react/VslSection.jsx';
+import CostOfInactionSection from '../components/react/CostOfInactionSection.jsx';
+import HowItWorksSection from '../components/HowItWorksSection.astro';
+import DeploySection from '../components/DeploySectionPolished.astro';
+import Footer from '../components/Footer.astro';
+
+// Mobile components
+import MobileNavbar from '../components/mobile/MobileNavbar.astro';
+import MobileFooter from '../components/mobile/MobileFooter.astro';
+---
+
+<BaseLayout>
+  <!-- DESKTOP VIEW -->
+  <div class="hidden md:block relative w-full min-h-screen bg-[#050505] text-white selection:bg-accent selection:text-background font-sans overscroll-none">
+    <BackgroundTexture />
+    <AmbientGlowSystem />
+    <div class="relative z-10 w-full overflow-x-hidden">
+      <Navbar />
+      <AnimatedHero client:load />
+      <VslSection client:visible />
+      <CostOfInactionSection client:visible />
+      <HowItWorksSection />
+      <DeploySection />
+      <Footer />
+    </div>
+  </div>
+
+  <!-- MOBILE VIEW -->
+  <div class="block md:hidden relative w-full bg-[#050505] text-white selection:bg-accent selection:text-background font-sans overscroll-none scroll-smooth">
+    <BackgroundTexture />
+    <AmbientGlowSystem />
+    <div class="relative z-10 w-full overflow-x-hidden">
+      <MobileNavbar />
+      <AnimatedHero client:load />
+      <VslSection client:visible />
+      <CostOfInactionSection client:visible />
+      <HowItWorksSection />
+      <DeploySection />
+      <MobileFooter />
+    </div>
+  </div>
+</BaseLayout>

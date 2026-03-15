@@ -1,0 +1,91 @@
+---
+const withoutItems = [
+  "Revenue plateaus. Workload doesn't.",
+  "Client churn eats what growth builds.",
+  "Can't scale without hiring. Hiring kills margin.",
+  "No moat. Easily replaced.",
+];
+
+const withItems = [
+  "More revenue. Same book of business.",
+  "Clients stay longer. Churn drops.",
+  "Irreplaceable to every client.",
+  "No new headcount. Predictable income.",
+  { text: "Adds ", highlight: "$5k–$15k MRR", rest: " without ad spend." },
+  "Immediate, 24/7 hyper-responsive sales floor.",
+];
+---
+
+<section class="relative w-full py-20 px-5 bg-transparent">
+  <!-- Ambient glow -->
+  <div class="absolute top-[15%] left-[-20%] w-[80vw] h-[80vw] opacity-[0.1] mix-blend-screen pointer-events-none" style="background: radial-gradient(ellipse at center, rgba(178, 133, 27, 0.3) 0%, rgba(178, 133, 27, 0) 60%)"></div>
+
+  <div class="flex flex-col items-center">
+
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-sans font-bold uppercase tracking-tighter leading-[0.95]">
+        <span class="text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#d4d4d4] to-[#737373]">YOUR OFFER </span>
+        <span class="text-transparent bg-clip-text bg-gradient-to-b from-[#fcd34d] via-[#b48618] to-[#5c4004]">SUPERCHARGED</span>
+      </h2>
+    </div>
+
+    <!-- WITHOUT Card -->
+    <div class="w-full rounded-2xl p-6 mb-4 border border-white/10 backdrop-blur-sm" style="background-color: rgba(15, 10, 10, 0.85);">
+      <div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
+        <div class="w-8 h-8 rounded-full border border-red-500/40 bg-red-500/15 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-red-400"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </div>
+        <span class="font-sans text-sm font-bold text-red-400 uppercase tracking-wider">Without Rev²</span>
+      </div>
+      <div class="flex flex-col gap-4">
+        {withoutItems.map((item) => (
+          <div class="flex items-start gap-3">
+            <div class="w-4 h-4 mt-0.5 rounded border border-red-500/20 bg-red-500/5 flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-red-400/60"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </div>
+            <span class="text-white/40 font-sans text-sm leading-snug">{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- WITH Card -->
+    <div class="w-full rounded-2xl p-6 border border-accent/20 backdrop-blur-sm" style="background-color: rgba(18, 14, 8, 0.85);">
+      <div class="flex items-center gap-3 mb-6 pb-4 border-b border-accent/20">
+        <div class="w-8 h-8 rounded-full border border-accent/50 bg-accent/20 flex items-center justify-center shadow-[0_0_15px_rgba(228,172,38,0.4)]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <span class="font-sans text-sm font-bold text-accent uppercase tracking-wider drop-shadow-[0_0_10px_rgba(228,172,38,0.5)]">With Rev²</span>
+      </div>
+      <div class="flex flex-col gap-4">
+        {withItems.map((item) => (
+          <div class="flex items-start gap-3">
+            <div class="w-4 h-4 mt-0.5 rounded border border-accent/40 bg-accent/10 flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <span class="text-white/60 font-sans text-sm leading-snug font-medium">
+              {typeof item === 'object' ? (
+                <>{item.text}<span class="text-accent font-bold">{item.highlight}</span>{item.rest}</>
+              ) : item}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA inside With card -->
+      <div class="mt-6 pt-5 border-t border-accent/15">
+        <a
+          href="https://cal.com/wellbuiltai/discovery"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full rounded-full font-bold tracking-widest uppercase bg-[#B2851B] hover:bg-[#c29624] text-[#050505] border border-[#B2851B]/50 shadow-[0_0_20px_rgba(178,133,27,0.3)] px-8 py-3.5 text-sm inline-flex items-center justify-center gap-2 no-underline"
+        >
+          Book Your Discovery Call
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="opacity-80"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /preview-booking
+
+Sitemap: https://wellbuilt.ai/sitemap.xml

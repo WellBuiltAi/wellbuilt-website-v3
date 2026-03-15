@@ -1,0 +1,73 @@
+---
+const stats = [
+  { stat: "21x", label: "More conversions", desc: "We engage every lead before they go cold." },
+  { stat: "78%", label: "First responder wins", desc: "Your clients always answer first." },
+  { stat: "63%", label: "Leads never contacted", desc: "Your clients' leads always are." },
+  { stat: "<1%", label: "Agencies offer this", desc: "Yours does. Ultimate competitive edge." },
+];
+---
+
+<section class="relative w-full py-20 px-5 bg-transparent">
+  <div class="flex flex-col items-center text-center">
+
+    <!-- Header -->
+    <span class="font-mono text-[10px] text-accent tracking-[0.3em] uppercase mb-5 block font-medium">Don't Take Our Word For It</span>
+    <h2 class="text-3xl font-sans font-bold uppercase tracking-tighter leading-[0.95] mb-12">
+      <span class="text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#d4d4d4] to-[#737373]">SOUNDS LIKE MAGIC. </span>
+      <span class="text-transparent bg-clip-text bg-gradient-to-b from-[#fcd34d] via-[#b48618] to-[#5c4004]">IT'S BETTER.</span>
+    </h2>
+
+    <!-- Video Player -->
+    <div class="relative w-full mb-14">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-accent/30 blur-[80px] rounded-[60px] pointer-events-none mix-blend-screen opacity-60"></div>
+
+      <div id="mobile-vsl-container" class="w-full aspect-video bg-black border border-white/20 rounded-xl relative overflow-hidden flex items-center justify-center shadow-[0_0_30px_rgba(178,133,27,0.15)] z-10">
+        <!-- Thumbnail state -->
+        <div id="mobile-vsl-thumb" class="absolute inset-0 cursor-pointer flex items-center justify-center group">
+          <img src="/vsl-thumbnail.jpg" alt="Video Thumbnail" class="absolute inset-0 w-full h-full object-cover z-0 opacity-70" />
+          <div class="relative z-10 w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center rounded-full shadow-2xl">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white ml-0.5"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-2 gap-3 w-full mb-10">
+      {stats.map((card) => (
+        <div class="bg-white/[0.04] border border-white/5 rounded-xl p-4 flex flex-col items-center text-center">
+          <div class="text-2xl font-bold text-accent mb-1.5 tracking-tight">{card.stat}</div>
+          <span class="text-[11px] text-white/70 font-medium leading-snug mb-1">{card.label}</span>
+          <div class="text-[10px] text-white/40 leading-relaxed">{card.desc}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <a
+      href="https://cal.com/wellbuiltai/discovery"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-full rounded-full font-bold tracking-widest uppercase bg-[#B2851B] hover:bg-[#c29624] text-[#050505] border border-[#B2851B]/50 shadow-[0_0_20px_rgba(178,133,27,0.3)] px-8 py-4 text-sm inline-flex items-center justify-center gap-2 no-underline"
+    >
+      Book Your Discovery Call
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="opacity-80"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<script>
+  const thumb = document.getElementById('mobile-vsl-thumb');
+  const container = document.getElementById('mobile-vsl-container');
+  if (thumb && container) {
+    thumb.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://drive.google.com/file/d/1fWvLzMY9XfUZndFc4aOG3Udd-I3PBAzS/preview';
+      iframe.className = 'absolute top-0 left-0 w-full h-full border-0';
+      iframe.allow = 'autoplay; fullscreen';
+      iframe.allowFullscreen = true;
+      thumb.remove();
+      container.appendChild(iframe);
+    });
+  }
+</script>

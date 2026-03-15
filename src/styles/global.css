@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-white font-sans overflow-x-hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-white;
+  }
+}
+
+@layer utilities {
+  .clip-pill {
+    clip-path: inset(0 round 9999px);
+  }
+}
+
+/* Custom interactive styles */
+.magnetic-btn {
+  @apply relative overflow-hidden inline-flex items-center justify-center transition-transform duration-500;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.magnetic-btn:hover {
+  transform: scale(1.03);
+}
+
+.magnetic-btn>span.bg-slider {
+  @apply absolute inset-0 bg-accent translate-y-[100%] transition-transform duration-500 ease-out z-0;
+}
+
+.magnetic-btn:hover>span.bg-slider {
+  @apply translate-y-0;
+}
+
+.magnetic-btn>span.content {
+  @apply relative z-10;
+}
+
+.hover-lift {
+  @apply transition-transform duration-300;
+}
+
+.hover-lift:hover {
+  transform: translateY(-1px);
+}
+
+/* Cost-of-inaction card items — start hidden for GSAP reveal */
+.cost-item {
+  will-change: transform, opacity, filter;
+}

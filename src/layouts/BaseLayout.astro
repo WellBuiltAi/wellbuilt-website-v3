@@ -1,0 +1,96 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "WellBuilt AI — Multiply Your Agency's Revenue",
+  description = "WellBuilt AI — Rev² system for SMMA agencies serving local service businesses. AI-powered lead engagement, database reactivation, and automated closing that adds $5k–$15k MRR to your agency without ad spend."
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, 'https://wellbuilt.ai');
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL.href} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="apple-touch-icon" href="/logo.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL.href} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="https://wellbuilt.ai/logo.png" />
+  <meta property="og:site_name" content="WellBuilt AI" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://wellbuilt.ai/logo.png" />
+
+  <!-- Fonts: preconnect + preload critical weight, then load full set -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" /></noscript>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" /></noscript>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "WellBuilt AI",
+    "url": "https://wellbuilt.ai",
+    "logo": "https://wellbuilt.ai/logo.png",
+    "description": description,
+    "sameAs": []
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "WellBuilt AI",
+    "url": "https://wellbuilt.ai"
+  })} />
+</head>
+
+<body class="bg-[#000000] text-white">
+  <!-- Global CSS Noise overlay filter -->
+  <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1"
+    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <filter id="noiseFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" />
+      </filter>
+    </defs>
+  </svg>
+  <div id="noise-layer"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; opacity: 0.05; filter: url(#noiseFilter);">
+  </div>
+
+  <slot />
+</body>
+</html>

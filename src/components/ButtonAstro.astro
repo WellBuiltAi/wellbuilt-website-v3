@@ -1,0 +1,19 @@
+---
+const { href = '#', class: className = '' } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    "relative group text-foreground mx-auto text-center rounded-full font-bold tracking-widest uppercase transition-all overflow-hidden",
+    "bg-[#B2851B] hover:bg-[#c29624] text-[#050505] border border-[#B2851B]/50 shadow-[0_0_20px_rgba(178,133,27,0.3)] hover:shadow-[0_0_40px_rgba(178,133,27,0.6)]",
+    "px-9 py-4 text-sm inline-flex items-center justify-center gap-2 no-underline",
+    className,
+  ]}
+>
+  <span class="absolute h-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out inset-x-0 top-0 bg-gradient-to-r w-3/4 mx-auto from-transparent via-white to-transparent"></span>
+  <span class="relative z-10 flex items-center justify-center gap-2">
+    <slot />
+  </span>
+  <span class="absolute group-hover:opacity-50 transition-all duration-500 ease-in-out inset-x-0 h-[2px] bottom-0 bg-gradient-to-r w-3/4 mx-auto from-transparent via-[#FFD700] to-transparent"></span>
+</a>
