@@ -41,7 +41,7 @@ export default function AnimatedHero() {
   return (
     <section ref={comp} className="relative w-full px-6 md:px-[6vw] lg:px-[4vw] xl:px-12 border-b border-white/10 flex flex-col justify-start pt-[38vh] pb-16 md:justify-center md:pt-0 md:pb-0 min-h-[100dvh] md:min-h-screen bg-transparent overflow-hidden">
       {/* Mobile Globe — tucked behind text, right side */}
-      <div className="absolute top-[52%] -translate-y-[50%] -right-[22%] w-[60vw] h-[60vw] md:hidden pointer-events-none mix-blend-screen opacity-20 z-0">
+      <div className="absolute top-[52%] -translate-y-[50%] -right-[22%] w-[60vw] h-[60vw] md:hidden pointer-events-none mix-blend-screen opacity-25 z-0">
         <div className="absolute inset-0 bg-accent/3 blur-[40px] rounded-full pointer-events-none"></div>
         <Globe size={280} dotColor="rgba(178, 133, 27, ALPHA)" markerColor="rgba(178, 133, 27, 1)" arcColor="rgba(178, 133, 27, 0.4)" autoRotateSpeed={0.00092} />
       </div>
@@ -57,7 +57,7 @@ export default function AnimatedHero() {
             </span>
           </div>
 
-          <h1 className="text-[clamp(1.8rem,7vw,5.2rem)] font-sans font-bold uppercase tracking-tighter text-white leading-[1.05] mb-4 md:mb-6 w-full whitespace-nowrap">
+          <h1 className="text-[clamp(2.1rem,7.5vw,5.2rem)] font-sans font-bold uppercase tracking-tighter text-white leading-[1.05] mb-4 md:mb-6 w-full whitespace-nowrap">
             Multiply Your SMMA's <br />
             <span className="relative flex w-full md:min-w-max justify-start overflow-hidden text-accent font-drama italic font-normal tracking-tight leading-[1] mix-blend-lighten mt-1 md:mt-3 h-[1.35em] pr-4">
               {titles.map((title, index) => {
@@ -100,7 +100,7 @@ export default function AnimatedHero() {
         </div>
 
         {/* Desktop Globe */}
-        <div className="hidden md:flex absolute lg:relative top-[50%] lg:top-auto left-1/2 lg:left-auto -translate-x-[60%] sm:-translate-x-[55%] md:-translate-x-1/2 lg:translate-x-12 -translate-y-1/2 lg:-translate-y-0 w-[70vw] lg:w-[45%] items-center justify-center lg:justify-end min-h-[500px] pointer-events-none lg:pointer-events-auto mix-blend-screen opacity-50 lg:opacity-80 lg:hover:opacity-100 transition-opacity duration-1000 lg:scale-[1.2] lg:origin-right z-0 lg:z-10">
+        <div className="hidden md:flex absolute lg:relative top-[50%] lg:top-auto left-1/2 lg:left-auto -translate-x-[60%] sm:-translate-x-[55%] md:-translate-x-1/2 lg:translate-x-12 -translate-y-1/2 lg:-translate-y-0 w-[70vw] lg:w-[45%] items-center justify-center lg:justify-end min-h-[500px] pointer-events-none lg:pointer-events-auto mix-blend-screen opacity-55 lg:opacity-85 lg:hover:opacity-100 transition-opacity duration-1000 lg:scale-[1.2] lg:origin-right z-0 lg:z-10">
           <div className="absolute inset-0 bg-accent/5 blur-[120px] rounded-full pointer-events-none"></div>
           <Globe size={700} dotColor="rgba(178, 133, 27, ALPHA)" markerColor="rgba(178, 133, 27, 1)" arcColor="rgba(178, 133, 27, 0.4)" autoRotateSpeed={0.00092} />
         </div>

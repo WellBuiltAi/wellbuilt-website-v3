@@ -77,7 +77,7 @@ export default function CostOfInactionSection() {
 
       {/* Cards */}
       <div className="flex-1 w-full max-w-[1400px] mx-auto flex items-start justify-center relative z-10 px-6 md:px-12">
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 max-w-[1100px] mx-auto">
+        <div className="w-[88%] md:w-full grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 max-w-[1100px] mx-auto">
 
           {/* WITHOUT Rev² */}
           <div

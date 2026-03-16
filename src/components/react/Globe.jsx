@@ -17,15 +17,18 @@ const DEFAULT_MARKERS = [
 ];
 
 const DEFAULT_CONNECTIONS = [
-    { from: [37.78, -122.42], to: [51.51, -0.13] },
-    { from: [51.51, -0.13], to: [35.68, 139.69] },
-    { from: [35.68, 139.69], to: [-33.87, 151.21] },
-    { from: [37.78, -122.42], to: [1.35, 103.82] },
-    { from: [51.51, -0.13], to: [28.61, 77.21] },
-    { from: [37.78, -122.42], to: [-23.55, -46.63] },
-    { from: [1.35, 103.82], to: [-33.87, 151.21] },
-    { from: [28.61, 77.21], to: [36.19, 44.01] },
-    { from: [51.51, -0.13], to: [36.19, 44.01] },
+    { from: [37.78, -122.42], to: [51.51, -0.13] },   // SF → London
+    { from: [51.51, -0.13], to: [55.76, 37.62] },      // London → Moscow
+    { from: [55.76, 37.62], to: [28.61, 77.21] },      // Moscow → Delhi
+    { from: [28.61, 77.21], to: [1.35, 103.82] },      // Delhi → Singapore
+    { from: [1.35, 103.82], to: [35.68, 139.69] },     // Singapore → Tokyo
+    { from: [35.68, 139.69], to: [-33.87, 151.21] },   // Tokyo → Sydney
+    { from: [-33.87, 151.21], to: [-23.55, -46.63] },  // Sydney → São Paulo
+    { from: [-23.55, -46.63], to: [19.43, -99.13] },   // São Paulo → Mexico City
+    { from: [19.43, -99.13], to: [37.78, -122.42] },   // Mexico City → SF
+    { from: [51.51, -0.13], to: [36.19, 44.01] },      // London → Erbil
+    { from: [36.19, 44.01], to: [35.68, 139.69] },     // Erbil → Tokyo
+    { from: [37.78, -122.42], to: [-23.55, -46.63] },  // SF → São Paulo
 ];
 
 function latLngToXYZ(lat, lng, radius) {
@@ -67,7 +70,7 @@ export function Globe({
 }) {
     const canvasRef = useRef(null);
     const rotYRef = useRef(0.4);
-    const rotXRef = useRef(0.05);
+    const rotXRef = useRef(0);
     const animRef = useRef(0);
     const timeRef = useRef(0);
     const dotsRef = useRef([]);
@@ -163,7 +166,7 @@ export function Globe({
             [x1, y1, z1] = rotateY(x1, y1, z1, ry);
             [x2, y2, z2] = rotateX(x2, y2, z2, rx);
             [x2, y2, z2] = rotateY(x2, y2, z2, ry);
-            if (z1 > radius * 0.3 && z2 > radius * 0.3) continue;
+            if (z1 > radius * 0.6 && z2 > radius * 0.6) continue;
             const [sx1, sy1] = project(x1, y1, z1, cx, cy, fov);
             const [sx2, sy2] = project(x2, y2, z2, cx, cy, fov);
             const midX = (x1 + x2) / 2;
@@ -194,7 +197,7 @@ export function Globe({
             let [x, y, z] = latLngToXYZ(marker.lat, marker.lng, radius);
             [x, y, z] = rotateX(x, y, z, rx);
             [x, y, z] = rotateY(x, y, z, ry);
-            if (z > radius * 0.1) continue;
+            if (z > radius * 0.5) continue;
             const [sx, sy] = project(x, y, z, cx, cy, fov);
             const pulse = Math.sin(time * 2 + marker.lat) * 0.5 + 0.5;
             ctx.beginPath();
