@@ -23,39 +23,22 @@ const DEFAULT_MARKERS = [
 ];
 
 const DEFAULT_CONNECTIONS = [
-    // Top ring (all 4 segments)
-    { from: [40, 0], to: [40, 90] },
-    { from: [40, 90], to: [40, 180] },
-    { from: [40, 180], to: [40, -90] },
-    { from: [40, -90], to: [40, 0] },
-    // Equator ring (all 4 segments)
-    { from: [0, 45], to: [0, 135] },
-    { from: [0, 135], to: [0, -135] },
-    { from: [0, -135], to: [0, -45] },
-    { from: [0, -45], to: [0, 45] },
-    // Bottom ring (all 4 segments)
-    { from: [-40, 0], to: [-40, 90] },
-    { from: [-40, 90], to: [-40, 180] },
-    { from: [-40, 180], to: [-40, -90] },
-    { from: [-40, -90], to: [-40, 0] },
-    // Top → Equator diagonals (each top point to its two nearest equator points)
+    // Top ring → Equator diagonals
     { from: [40, 0], to: [0, 45] },
-    { from: [40, 0], to: [0, -45] },
-    { from: [40, 90], to: [0, 45] },
     { from: [40, 90], to: [0, 135] },
-    { from: [40, 180], to: [0, 135] },
     { from: [40, 180], to: [0, -135] },
-    { from: [40, -90], to: [0, -135] },
     { from: [40, -90], to: [0, -45] },
-    // Equator → Bottom diagonals (each equator point to its two nearest bottom points)
-    { from: [0, 45], to: [-40, 0] },
+    // Equator → Bottom ring diagonals
     { from: [0, 45], to: [-40, 90] },
-    { from: [0, 135], to: [-40, 90] },
     { from: [0, 135], to: [-40, 180] },
-    { from: [0, -135], to: [-40, 180] },
     { from: [0, -135], to: [-40, -90] },
-    { from: [0, -45], to: [-40, -90] },
     { from: [0, -45], to: [-40, 0] },
+    // Top ring segments
+    { from: [40, 0], to: [40, 90] },
+    { from: [40, 180], to: [40, -90] },
+    // Bottom ring segments
+    { from: [-40, 0], to: [-40, 90] },
+    { from: [-40, 180], to: [-40, -90] },
 ];
 
 function latLngToXYZ(lat, lng, radius) {
