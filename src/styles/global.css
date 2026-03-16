@@ -9,9 +9,9 @@
   }
 
   body {
-    @apply bg-background text-white font-sans overflow-x-hidden;
+    @apply bg-background text-white font-sans;
+    overflow-x: clip;
     overscroll-behavior: none;
-    -webkit-overflow-scrolling: auto;
   }
 
   h1,
