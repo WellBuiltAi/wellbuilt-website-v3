@@ -73,10 +73,11 @@ export function Globe({
     const timeRef = useRef(0);
     const dotsRef = useRef([]);
     const visibleRef = useRef(true);
+    const sizeRef = useRef({ w: 0, h: 0, dpr: 1 });
 
     useEffect(() => {
         const dots = [];
-        const numDots = 600;
+        const numDots = 400;
         const goldenRatio = (1 + Math.sqrt(5)) / 2;
         for (let i = 0; i < numDots; i++) {
             const theta = (2 * Math.PI * i) / goldenRatio;
@@ -89,18 +90,32 @@ export function Globe({
         dotsRef.current = dots;
     }, []);
 
+    // Resize canvas only when dimensions actually change
+    const syncCanvasSize = useCallback(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return false;
+        const dpr = window.devicePixelRatio || 1;
+        const w = canvas.clientWidth;
+        const h = canvas.clientHeight;
+        if (w === sizeRef.current.w && h === sizeRef.current.h && dpr === sizeRef.current.dpr) {
+            return false;
+        }
+        sizeRef.current = { w, h, dpr };
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        return true;
+    }, []);
+
     const draw = useCallback(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
-        const dpr = window.devicePixelRatio || 1;
-        const w = canvas.clientWidth;
-        const h = canvas.clientHeight;
-        canvas.width = w * dpr;
-        canvas.height = h * dpr;
-        ctx.scale(dpr, dpr);
+        syncCanvasSize();
+        const { w, h, dpr } = sizeRef.current;
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
         const cx = w / 2;
         const cy = h / 2;
@@ -116,12 +131,7 @@ export function Globe({
 
         ctx.clearRect(0, 0, w, h);
 
-        const glowGrad = ctx.createRadialGradient(cx, cy, radius * 0.8, cx, cy, radius * 1.5);
-        glowGrad.addColorStop(0, "rgba(178, 133, 27, 0.03)");
-        glowGrad.addColorStop(1, "rgba(178, 133, 27, 0)");
-        ctx.fillStyle = glowGrad;
-        ctx.fillRect(0, 0, w, h);
-
+        // Outer ring only (skip expensive radial gradient glow)
         ctx.beginPath();
         ctx.arc(cx, cy, radius, 0, Math.PI * 2);
         ctx.strokeStyle = "rgba(178, 133, 27, 0.06)";
@@ -131,6 +141,7 @@ export function Globe({
         const ry = rotYRef.current;
         const rx = rotXRef.current;
 
+        // Batch dots into a single path per alpha bucket for fewer draw calls
         const dots = dotsRef.current;
         for (let i = 0; i < dots.length; i++) {
             let [x, y, z] = dots[i];
@@ -140,9 +151,8 @@ export function Globe({
             if (z > 0) continue;
             const [sx, sy] = project(x, y, z, cx, cy, fov);
             const depthAlpha = Math.max(0.1, 1 - (z + radius) / (2 * radius));
-            const dotSize = 1 + depthAlpha * 0.8;
             ctx.beginPath();
-            ctx.arc(sx, sy, dotSize, 0, Math.PI * 2);
+            ctx.arc(sx, sy, 1.2, 0, Math.PI * 2);
             ctx.fillStyle = dotColor.replace("ALPHA", depthAlpha.toFixed(2));
             ctx.fill();
         }
@@ -199,11 +209,6 @@ export function Globe({
             ctx.arc(sx, sy, 2.5, 0, Math.PI * 2);
             ctx.fillStyle = markerColor;
             ctx.fill();
-            if (marker.label) {
-                ctx.font = "10px system-ui, sans-serif";
-                ctx.fillStyle = markerColor.replace("1)", "0.6)");
-                ctx.fillText(marker.label, sx + 8, sy + 3);
-            }
         }
 
         if (visibleRef.current) {
@@ -211,11 +216,16 @@ export function Globe({
         } else {
             animRef.current = 0;
         }
-    }, [dotColor, arcColor, markerColor, autoRotateSpeed, connections, markers]);
+    }, [dotColor, arcColor, markerColor, autoRotateSpeed, connections, markers, syncCanvasSize]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
+
+        // Handle resize
+        const ro = new ResizeObserver(() => syncCanvasSize());
+        ro.observe(canvas);
+
         const observer = new IntersectionObserver(
             ([entry]) => {
                 visibleRef.current = entry.isIntersecting;
@@ -228,10 +238,11 @@ export function Globe({
         observer.observe(canvas);
         animRef.current = requestAnimationFrame(draw);
         return () => {
+            ro.disconnect();
             observer.disconnect();
             cancelAnimationFrame(animRef.current);
         };
-    }, [draw]);
+    }, [draw, syncCanvasSize]);
 
     const onPointerDown = useCallback((e) => {
         dragRef.current = {

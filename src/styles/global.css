@@ -3,13 +3,15 @@
 @tailwind utilities;
 
 @layer base {
-  html, body {
+  html {
+    scroll-behavior: auto !important;
     overscroll-behavior: none;
-    -webkit-overflow-scrolling: touch;
   }
 
   body {
     @apply bg-background text-white font-sans overflow-x-hidden;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
   }
 
   h1,
@@ -61,4 +63,14 @@
 /* Cost-of-inaction card items — start hidden for GSAP reveal */
 .cost-item {
   will-change: transform, opacity;
+}
+
+/* Pin container — GPU-accelerated layer for smooth ScrollTrigger pinning */
+.pin-spacer {
+  contain: layout style;
+}
+
+/* Reduce paint cost on heavy blend-mode glow elements */
+[style*="mix-blend"] {
+  contain: paint;
 }

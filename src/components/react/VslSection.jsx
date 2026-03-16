@@ -16,14 +16,14 @@ export default function VslSection() {
           <h2 className="text-3xl md:text-6xl lg:text-7xl font-sans font-bold uppercase tracking-tighter leading-[0.9] drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)]">
             {/* Mobile: one line */}
             <span className="md:hidden whitespace-nowrap">
-              <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#d4d4d4] to-[#737373]" style={{ filter: 'drop-shadow(0px 2px 2px rgba(255,255,255,0.3))' }}>Supercharge </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#d4d4d4] to-[#737373]" style={{ filter: 'drop-shadow(0px 2px 2px rgba(255,255,255,0.3))' }}>Multiply </span>
               <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#fcd34d] via-[#b48618] to-[#5c4004] font-drama italic font-normal tracking-tight" style={{ filter: 'drop-shadow(0px 2px 2px rgba(228,172,38,0.4))' }}>Your Offer.</span>
             </span>
             {/* Desktop: original layout */}
             <span className="hidden md:inline">
               <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#d4d4d4] to-[#737373]" style={{ filter: 'drop-shadow(0px 2px 2px rgba(255,255,255,0.3))' }}>IT'S TIME TO </span>
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#fcd34d] via-[#b48618] to-[#5c4004] font-drama italic font-normal tracking-tight" style={{ filter: 'drop-shadow(0px 2px 2px rgba(228,172,38,0.4))' }}>SUPERCHARGE YOUR OFFER.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#fcd34d] via-[#b48618] to-[#5c4004] font-drama italic font-normal tracking-tight" style={{ filter: 'drop-shadow(0px 2px 2px rgba(228,172,38,0.4))' }}>MULTIPLY YOUR OFFER.</span>
             </span>
           </h2>
         </div>

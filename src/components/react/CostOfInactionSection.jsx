@@ -44,12 +44,13 @@ export default function CostOfInactionSection() {
           scrollTrigger: {
             trigger: "#the-problem",
             start: "top top",
-            end: "+=160%",
-            scrub: 0.6,
+            end: "+=150%",
+            scrub: true,
             pin: true,
             pinSpacing: true,
-            anticipatePin: 1,
+            anticipatePin: 0,
             invalidateOnRefresh: true,
+            fastScrollEnd: true,
           },
         });
 
@@ -58,7 +59,7 @@ export default function CostOfInactionSection() {
           withoutItems.forEach((item, i) => {
             tl.fromTo(item,
               { opacity: 0.1, x: -20 },
-              { opacity: 1, x: 0, duration: 0.12, ease: "power2.out" },
+              { opacity: 1, x: 0, duration: 0.12, ease: "none" },
               i * 0.06
             );
           });
@@ -69,7 +70,7 @@ export default function CostOfInactionSection() {
           withItems.forEach((item, i) => {
             tl.fromTo(item,
               { opacity: 0, x: 25 },
-              { opacity: 1, x: 0, duration: 0.12, ease: "power2.out" },
+              { opacity: 1, x: 0, duration: 0.12, ease: "none" },
               0.25 + i * 0.08
             );
           });
@@ -99,7 +100,7 @@ export default function CostOfInactionSection() {
   ];
 
   return (
-    <section id="the-problem" className="min-h-screen md:h-screen w-full relative flex flex-col items-center bg-transparent py-20 md:py-0">
+    <section id="the-problem" className="min-h-screen md:h-[100vh] w-full relative flex flex-col items-center bg-transparent py-20 md:py-0" style={{ willChange: 'transform' }}>
       {/* Ambient glows */}
       <div className="absolute top-[10%] left-[-15%] w-[55vw] h-[55vw] max-w-[750px] max-h-[750px] opacity-[0.15] mix-blend-screen pointer-events-none -rotate-6" style={{ background: 'radial-gradient(ellipse at center, rgba(178, 133, 27, 0.35) 0%, rgba(178, 133, 27, 0) 60%)' }} />
       <div className="absolute bottom-[5%] right-[-20%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] opacity-[0.12] mix-blend-screen pointer-events-none rotate-6" style={{ background: 'radial-gradient(ellipse at center, rgba(178, 133, 27, 0.3) 0%, rgba(178, 133, 27, 0) 55%)' }} />
@@ -108,7 +109,7 @@ export default function CostOfInactionSection() {
       <div className="text-center mb-10 md:mb-20 pt-8 md:pt-32 relative z-20 shrink-0 px-6">
         <h2 className="text-3xl md:text-[clamp(3rem,6.5vw,6rem)] lg:text-8xl font-sans font-bold uppercase tracking-tighter leading-[0.9] drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)]">
           <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#d4d4d4] to-[#737373] inline" style={{ filter: 'drop-shadow(0px 2px 2px rgba(255,255,255,0.3))' }}>YOUR OFFER </span>
-          <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#fcd34d] via-[#b48618] to-[#5c4004] inline font-drama italic font-normal tracking-tight" style={{ filter: 'drop-shadow(0px 2px 2px rgba(228,172,38,0.4))' }}>SUPERCHARGED</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#fcd34d] via-[#b48618] to-[#5c4004] inline font-drama italic font-normal tracking-tight" style={{ filter: 'drop-shadow(0px 2px 2px rgba(228,172,38,0.4))' }}>MULTIPLIED</span>
         </h2>
       </div>
 
