@@ -68,7 +68,6 @@ export function Globe({
     const canvasRef = useRef(null);
     const rotYRef = useRef(0.4);
     const rotXRef = useRef(0.3);
-    const dragRef = useRef({ active: false, startX: 0, startY: 0, startRotY: 0, startRotX: 0 });
     const animRef = useRef(0);
     const timeRef = useRef(0);
     const dotsRef = useRef([]);
@@ -122,9 +121,7 @@ export function Globe({
         const radius = Math.min(w, h) * 0.38;
         const fov = 600;
 
-        if (!dragRef.current.active) {
-            rotYRef.current += autoRotateSpeed;
-        }
+        rotYRef.current += autoRotateSpeed;
 
         timeRef.current += 0.015;
         const time = timeRef.current;
@@ -244,32 +241,11 @@ export function Globe({
         };
     }, [draw, syncCanvasSize]);
 
-    const onPointerDown = useCallback((e) => {
-        dragRef.current = {
-            active: true, startX: e.clientX, startY: e.clientY,
-            startRotY: rotYRef.current, startRotX: rotXRef.current,
-        };
-        e.target.setPointerCapture(e.pointerId);
-    }, []);
-
-    const onPointerMove = useCallback((e) => {
-        if (!dragRef.current.active) return;
-        const dx = e.clientX - dragRef.current.startX;
-        const dy = e.clientY - dragRef.current.startY;
-        rotYRef.current = dragRef.current.startRotY + dx * 0.005;
-        rotXRef.current = Math.max(-1, Math.min(1, dragRef.current.startRotX + dy * 0.005));
-    }, []);
-
-    const onPointerUp = useCallback(() => { dragRef.current.active = false; }, []);
-
     return (
         <canvas
             ref={canvasRef}
-            className={cn("w-full cursor-grab active:cursor-grabbing", className)}
+            className={cn("w-full pointer-events-none", className)}
             style={{ width: "100%", maxWidth: size, aspectRatio: "1 / 1" }}
-            onPointerDown={onPointerDown}
-            onPointerMove={onPointerMove}
-            onPointerUp={onPointerUp}
         />
     );
 }
