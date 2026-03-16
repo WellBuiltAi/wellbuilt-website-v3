@@ -3,32 +3,42 @@
 import { cn } from "../../lib/utils";
 import { useRef, useEffect, useCallback } from "react";
 
+// 12 evenly-distributed synthetic points: 3 rings × 4 points, offset 45° between rings
 const DEFAULT_MARKERS = [
-    { lat: 37.78, lng: -122.42, label: "San Francisco" },
-    { lat: 51.51, lng: -0.13, label: "London" },
-    { lat: 35.68, lng: 139.69, label: "Tokyo" },
-    { lat: -33.87, lng: 151.21, label: "Sydney" },
-    { lat: 1.35, lng: 103.82, label: "Singapore" },
-    { lat: 55.76, lng: 37.62, label: "Moscow" },
-    { lat: -23.55, lng: -46.63, label: "São Paulo" },
-    { lat: 19.43, lng: -99.13, label: "Mexico City" },
-    { lat: 28.61, lng: 77.21, label: "Delhi" },
-    { lat: 36.19, lng: 44.01, label: "Erbil" },
+    // Top ring (40°N): 0°, 90°, 180°, -90°
+    { lat: 40, lng: 0 },
+    { lat: 40, lng: 90 },
+    { lat: 40, lng: 180 },
+    { lat: 40, lng: -90 },
+    // Equator ring (0°): 45°, 135°, -135°, -45° (offset 45°)
+    { lat: 0, lng: 45 },
+    { lat: 0, lng: 135 },
+    { lat: 0, lng: -135 },
+    { lat: 0, lng: -45 },
+    // Bottom ring (40°S): 0°, 90°, 180°, -90°
+    { lat: -40, lng: 0 },
+    { lat: -40, lng: 90 },
+    { lat: -40, lng: 180 },
+    { lat: -40, lng: -90 },
 ];
 
 const DEFAULT_CONNECTIONS = [
-    { from: [37.78, -122.42], to: [51.51, -0.13] },   // SF → London
-    { from: [51.51, -0.13], to: [55.76, 37.62] },      // London → Moscow
-    { from: [55.76, 37.62], to: [28.61, 77.21] },      // Moscow → Delhi
-    { from: [28.61, 77.21], to: [1.35, 103.82] },      // Delhi → Singapore
-    { from: [1.35, 103.82], to: [35.68, 139.69] },     // Singapore → Tokyo
-    { from: [35.68, 139.69], to: [-33.87, 151.21] },   // Tokyo → Sydney
-    { from: [-33.87, 151.21], to: [-23.55, -46.63] },  // Sydney → São Paulo
-    { from: [-23.55, -46.63], to: [19.43, -99.13] },   // São Paulo → Mexico City
-    { from: [19.43, -99.13], to: [37.78, -122.42] },   // Mexico City → SF
-    { from: [51.51, -0.13], to: [36.19, 44.01] },      // London → Erbil
-    { from: [36.19, 44.01], to: [35.68, 139.69] },     // Erbil → Tokyo
-    { from: [37.78, -122.42], to: [-23.55, -46.63] },  // SF → São Paulo
+    // Top ring → Equator diagonals
+    { from: [40, 0], to: [0, 45] },
+    { from: [40, 90], to: [0, 135] },
+    { from: [40, 180], to: [0, -135] },
+    { from: [40, -90], to: [0, -45] },
+    // Equator → Bottom ring diagonals
+    { from: [0, 45], to: [-40, 90] },
+    { from: [0, 135], to: [-40, 180] },
+    { from: [0, -135], to: [-40, -90] },
+    { from: [0, -45], to: [-40, 0] },
+    // Top ring segments
+    { from: [40, 0], to: [40, 90] },
+    { from: [40, 180], to: [40, -90] },
+    // Bottom ring segments
+    { from: [-40, 0], to: [-40, 90] },
+    { from: [-40, 180], to: [-40, -90] },
 ];
 
 function latLngToXYZ(lat, lng, radius) {
