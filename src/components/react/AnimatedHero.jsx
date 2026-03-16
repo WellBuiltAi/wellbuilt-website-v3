@@ -67,10 +67,11 @@ export default function AnimatedHero() {
                   <motion.span
                     key={index}
                     className="absolute left-0 whitespace-nowrap pb-2"
-                    initial={{ opacity: 0, y: "150%" }}
-                    transition={{ type: "spring", stiffness: 30, damping: 15 }}
+                    style={{ willChange: 'transform, opacity' }}
+                    initial={{ opacity: 0, y: "100%" }}
+                    transition={{ type: "tween", duration: 0.65, ease: [0.25, 1, 0.5, 1] }}
                     animate={{
-                      y: isCurrent ? 0 : (isPrev ? "-150%" : "150%"),
+                      y: isCurrent ? "0%" : (isPrev ? "-100%" : "100%"),
                       opacity: isCurrent ? 1 : 0
                     }}
                   >
