@@ -76,7 +76,7 @@ export function Globe({
 
     useEffect(() => {
         const dots = [];
-        const numDots = 400;
+        const numDots = 600;
         const goldenRatio = (1 + Math.sqrt(5)) / 2;
         for (let i = 0; i < numDots; i++) {
             const theta = (2 * Math.PI * i) / goldenRatio;
