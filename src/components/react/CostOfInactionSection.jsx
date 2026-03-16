@@ -51,7 +51,6 @@ export default function CostOfInactionSection() {
               scrub: 0.2,
               pin: true,
               pinSpacing: true,
-              anticipatePin: 1,
               invalidateOnRefresh: true,
             },
           });
