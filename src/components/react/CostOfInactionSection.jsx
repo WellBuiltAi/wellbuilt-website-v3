@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { gsap, ScrollTrigger } from '../../lib/gsap-setup';
+import { gsap } from '../../lib/gsap-setup';
 import { X, Check, ArrowRight } from 'lucide-react';
 import { GlowingEffect } from './GlowingEffect';
 import { Button } from './NeonButton';
@@ -10,86 +10,37 @@ export default function CostOfInactionSection() {
   const ctxRef = useRef(null);
 
   useEffect(() => {
-    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    const ctx = gsap.context(() => {
+      // Scroll-triggered reveal for both cards
+      if (withoutCardRef.current) {
+        const withoutItems = withoutCardRef.current.querySelectorAll('.cost-item');
+        withoutItems.forEach((item) => {
+          gsap.fromTo(item,
+            { opacity: 0.1, x: -20 },
+            {
+              opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+              scrollTrigger: { trigger: item, start: "top 90%", toggleActions: "play none none reverse" }
+            }
+          );
+        });
+      }
+      if (withCardRef.current) {
+        const withItems = withCardRef.current.querySelectorAll('.cost-item');
+        withItems.forEach((item) => {
+          gsap.fromTo(item,
+            { opacity: 0, x: 25 },
+            {
+              opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+              scrollTrigger: { trigger: item, start: "top 90%", toggleActions: "play none none reverse" }
+            }
+          );
+        });
+      }
+    });
 
-    // Wait for full layout settle before initializing ScrollTrigger
-    const initTimer = setTimeout(() => {
-      const ctx = gsap.context(() => {
-        if (isMobile) {
-          // Mobile: scroll-triggered reveal without pinning
-          if (withoutCardRef.current) {
-            const withoutItems = withoutCardRef.current.querySelectorAll('.cost-item');
-            withoutItems.forEach((item, i) => {
-              gsap.fromTo(item,
-                { opacity: 0.1, x: -20 },
-                {
-                  opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
-                  scrollTrigger: { trigger: item, start: "top 90%", toggleActions: "play none none reverse" }
-                }
-              );
-            });
-          }
-          if (withCardRef.current) {
-            const withItems = withCardRef.current.querySelectorAll('.cost-item');
-            withItems.forEach((item, i) => {
-              gsap.fromTo(item,
-                { opacity: 0, x: 25 },
-                {
-                  opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
-                  scrollTrigger: { trigger: item, start: "top 90%", toggleActions: "play none none reverse" }
-                }
-              );
-            });
-          }
-        } else {
-          // Desktop: pinned scrub timeline
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: "#the-problem",
-              start: "top top",
-              end: "+=200%",
-              scrub: 0.2,
-              pin: true,
-              pinSpacing: true,
-              invalidateOnRefresh: true,
-            },
-          });
-
-          if (withoutCardRef.current) {
-            const withoutItems = withoutCardRef.current.querySelectorAll('.cost-item');
-            withoutItems.forEach((item, i) => {
-              tl.fromTo(item,
-                { opacity: 0.1, x: -20 },
-                { opacity: 1, x: 0, duration: 0.15, ease: "power2.out" },
-                i * 0.08
-              );
-            });
-          }
-
-          if (withCardRef.current) {
-            const withItems = withCardRef.current.querySelectorAll('.cost-item');
-            withItems.forEach((item, i) => {
-              tl.fromTo(item,
-                { opacity: 0, x: 25 },
-                { opacity: 1, x: 0, duration: 0.15, ease: "power2.out" },
-                0.35 + i * 0.1
-              );
-            });
-          }
-
-          // Hold at end so items stay visible before unpin
-          tl.to({}, { duration: 0.3 });
-        }
-      });
-
-      ctxRef.current = ctx;
-
-      // Recalculate after all images/fonts loaded
-      ScrollTrigger.refresh();
-    }, 100);
+    ctxRef.current = ctx;
 
     return () => {
-      clearTimeout(initTimer);
       if (ctxRef.current) ctxRef.current.revert();
     };
   }, []);
@@ -111,7 +62,7 @@ export default function CostOfInactionSection() {
   ];
 
   return (
-    <section id="the-problem" className="min-h-screen md:h-screen w-full relative flex flex-col items-center bg-transparent py-20 md:py-0">
+    <section id="the-problem" className="w-full relative flex flex-col items-center bg-transparent py-20 md:py-28">
       {/* Ambient glows */}
       <div className="absolute top-[10%] left-[-15%] w-[55vw] h-[55vw] max-w-[750px] max-h-[750px] opacity-[0.15] mix-blend-screen pointer-events-none -rotate-6" style={{ background: 'radial-gradient(ellipse at center, rgba(178, 133, 27, 0.35) 0%, rgba(178, 133, 27, 0) 60%)' }} />
       <div className="absolute bottom-[5%] right-[-20%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] opacity-[0.12] mix-blend-screen pointer-events-none rotate-6" style={{ background: 'radial-gradient(ellipse at center, rgba(178, 133, 27, 0.3) 0%, rgba(178, 133, 27, 0) 55%)' }} />
