@@ -63,7 +63,7 @@ export default function VslSection() {
             { stat: "63%", label: "Of leads are never contacted.", desc: "Your clients' leads always are. Every single one." },
             { stat: "<1%", label: "Of agencies offer this.", desc: "Yours does. The ultimate competitive advantage for your agency." },
           ].map((card, i) => (
-            <div key={i} className="relative bg-white/[0.04] backdrop-blur-md hover:bg-white/[0.07] transition-colors duration-500 border border-white/5 rounded-xl md:rounded-2xl p-3 md:p-6 focus-stat flex flex-col justify-start items-start">
+            <div key={i} className="relative bg-white/[0.04] hover:bg-white/[0.07] transition-colors duration-500 border border-white/5 rounded-xl md:rounded-2xl p-3 md:p-6 focus-stat flex flex-col justify-start items-start">
               <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={2} />
               <div className="relative z-10 flex flex-col items-start justify-start h-full w-full text-left font-sans">
                 <div className="w-full text-center text-xl md:text-4xl lg:text-5xl font-bold text-accent drop-shadow-[0_0_20px_rgba(178,133,27,0.3)] mb-1.5 md:mb-4 leading-none tracking-tight">{card.stat}</div>

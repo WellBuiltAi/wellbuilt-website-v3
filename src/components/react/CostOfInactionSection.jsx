@@ -18,9 +18,9 @@ export default function CostOfInactionSection() {
           const withoutItems = withoutCardRef.current.querySelectorAll('.cost-item');
           withoutItems.forEach((item, i) => {
             gsap.fromTo(item,
-              { opacity: 0.1, x: -20, filter: "blur(4px)" },
+              { opacity: 0.1, x: -20 },
               {
-                opacity: 1, x: 0, filter: "blur(0px)", duration: 0.8, ease: "power2.out",
+                opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
                 scrollTrigger: { trigger: item, start: "top 90%", toggleActions: "play none none reverse" }
               }
             );
@@ -30,9 +30,9 @@ export default function CostOfInactionSection() {
           const withItems = withCardRef.current.querySelectorAll('.cost-item');
           withItems.forEach((item, i) => {
             gsap.fromTo(item,
-              { opacity: 0, x: 25, filter: "blur(6px)" },
+              { opacity: 0, x: 25 },
               {
-                opacity: 1, x: 0, filter: "blur(0px)", duration: 0.8, ease: "power2.out",
+                opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
                 scrollTrigger: { trigger: item, start: "top 90%", toggleActions: "play none none reverse" }
               }
             );
@@ -45,9 +45,10 @@ export default function CostOfInactionSection() {
             trigger: "#the-problem",
             start: "top top",
             end: "+=160%",
-            scrub: 0,
+            scrub: 0.6,
             pin: true,
             pinSpacing: true,
+            anticipatePin: 1,
             invalidateOnRefresh: true,
           },
         });
@@ -56,8 +57,8 @@ export default function CostOfInactionSection() {
           const withoutItems = withoutCardRef.current.querySelectorAll('.cost-item');
           withoutItems.forEach((item, i) => {
             tl.fromTo(item,
-              { opacity: 0.1, x: -20, filter: "blur(4px)" },
-              { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.12, ease: "power2.out" },
+              { opacity: 0.1, x: -20 },
+              { opacity: 1, x: 0, duration: 0.12, ease: "power2.out" },
               i * 0.06
             );
           });
@@ -67,8 +68,8 @@ export default function CostOfInactionSection() {
           const withItems = withCardRef.current.querySelectorAll('.cost-item');
           withItems.forEach((item, i) => {
             tl.fromTo(item,
-              { opacity: 0, x: 25, filter: "blur(6px)" },
-              { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.12, ease: "power2.out" },
+              { opacity: 0, x: 25 },
+              { opacity: 1, x: 0, duration: 0.12, ease: "power2.out" },
               0.25 + i * 0.08
             );
           });
@@ -119,7 +120,7 @@ export default function CostOfInactionSection() {
           <div
             ref={withoutCardRef}
             style={{ backgroundColor: 'rgba(15, 10, 10, 0.85)' }}
-            className="relative backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-10 lg:p-12"
+            className="relative border border-white/10 rounded-2xl p-6 md:p-10 lg:p-12"
           >
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-10 pb-6 border-b border-white/10">
@@ -145,7 +146,7 @@ export default function CostOfInactionSection() {
           <div
             ref={withCardRef}
             style={{ backgroundColor: 'rgba(18, 14, 8, 0.85)' }}
-            className="relative backdrop-blur-xl border border-accent/20 rounded-2xl p-6 md:p-10 lg:p-12"
+            className="relative border border-accent/20 rounded-2xl p-6 md:p-10 lg:p-12"
           >
             <GlowingEffect spread={80} glow={true} disabled={false} proximity={100} inactiveZone={0} borderWidth={3} />
             <div className="relative z-10">

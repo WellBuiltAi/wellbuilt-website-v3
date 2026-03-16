@@ -72,10 +72,11 @@ export function Globe({
     const animRef = useRef(0);
     const timeRef = useRef(0);
     const dotsRef = useRef([]);
+    const visibleRef = useRef(true);
 
     useEffect(() => {
         const dots = [];
-        const numDots = 1200;
+        const numDots = 600;
         const goldenRatio = (1 + Math.sqrt(5)) / 2;
         for (let i = 0; i < numDots; i++) {
             const theta = (2 * Math.PI * i) / goldenRatio;
@@ -205,12 +206,31 @@ export function Globe({
             }
         }
 
-        animRef.current = requestAnimationFrame(draw);
+        if (visibleRef.current) {
+            animRef.current = requestAnimationFrame(draw);
+        } else {
+            animRef.current = 0;
+        }
     }, [dotColor, arcColor, markerColor, autoRotateSpeed, connections, markers]);
 
     useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                visibleRef.current = entry.isIntersecting;
+                if (entry.isIntersecting && !animRef.current) {
+                    animRef.current = requestAnimationFrame(draw);
+                }
+            },
+            { threshold: 0 }
+        );
+        observer.observe(canvas);
         animRef.current = requestAnimationFrame(draw);
-        return () => cancelAnimationFrame(animRef.current);
+        return () => {
+            observer.disconnect();
+            cancelAnimationFrame(animRef.current);
+        };
     }, [draw]);
 
     const onPointerDown = useCallback((e) => {

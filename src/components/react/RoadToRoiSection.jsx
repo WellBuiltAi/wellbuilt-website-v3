@@ -102,7 +102,7 @@ const RoadToRoiSection = () => {
                   </div>
 
                   {/* Card Content */}
-                  <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left w-full bg-white/[0.02] backdrop-blur-md hover:bg-white/[0.04] transition-colors duration-500 border border-white/5 rounded-3xl p-6 md:p-8 flex-1">
+                  <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left w-full bg-white/[0.03] hover:bg-white/[0.05] transition-colors duration-500 border border-white/5 rounded-3xl p-6 md:p-8 flex-1">
                     <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={2} className="rounded-3xl" />
                     
                     <div className="w-full relative z-10">

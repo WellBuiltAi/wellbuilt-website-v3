@@ -58,7 +58,7 @@ export default function AnimatedHero() {
           </div>
 
           <h1 className="text-[clamp(1.8rem,7vw,5.2rem)] font-sans font-bold uppercase tracking-tighter text-white leading-[1.05] mb-4 md:mb-6 w-full whitespace-nowrap">
-            Supercharge Your SMMA's <br />
+            Multiply Your SMMA's <br />
             <span className="relative flex w-full md:min-w-max justify-start overflow-hidden text-accent font-drama italic font-normal tracking-tight leading-[1] mix-blend-lighten mt-1 md:mt-3 h-[1.35em] pr-4">
               {titles.map((title, index) => {
                 const isCurrent = titleNumber === index;

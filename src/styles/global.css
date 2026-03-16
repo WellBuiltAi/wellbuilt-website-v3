@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  html, body {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
   body {
     @apply bg-background text-white font-sans overflow-x-hidden;
   }
@@ -55,5 +60,5 @@
 
 /* Cost-of-inaction card items — start hidden for GSAP reveal */
 .cost-item {
-  will-change: transform, opacity, filter;
+  will-change: transform, opacity;
 }

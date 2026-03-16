@@ -62,13 +62,13 @@ const GlowingEffect = memo(
 
         useEffect(() => {
             if (disabled) return;
-            const handleScroll = () => handleMove();
+            // Disable on mobile/touch devices for performance
+            const isMobile = window.matchMedia('(max-width: 767px)').matches || 'ontouchstart' in window;
+            if (isMobile) return;
             const handlePointerMove = (e) => handleMove(e);
-            window.addEventListener("scroll", handleScroll, { passive: true });
             document.body.addEventListener("pointermove", handlePointerMove, { passive: true });
             return () => {
                 if (animationFrameRef.current) { cancelAnimationFrame(animationFrameRef.current); }
-                window.removeEventListener("scroll", handleScroll);
                 document.body.removeEventListener("pointermove", handlePointerMove);
             };
         }, [handleMove, disabled]);
