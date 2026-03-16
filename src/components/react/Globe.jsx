@@ -67,7 +67,7 @@ export function Globe({
 }) {
     const canvasRef = useRef(null);
     const rotYRef = useRef(0.4);
-    const rotXRef = useRef(0.3);
+    const rotXRef = useRef(0.05);
     const animRef = useRef(0);
     const timeRef = useRef(0);
     const dotsRef = useRef([]);
