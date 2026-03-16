@@ -7,80 +7,92 @@ import { Button } from './NeonButton';
 export default function CostOfInactionSection() {
   const withoutCardRef = useRef(null);
   const withCardRef = useRef(null);
+  const ctxRef = useRef(null);
 
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
-    const ctx = gsap.context(() => {
-      if (isMobile) {
-        // Mobile: scroll-triggered reveal without pinning
-        if (withoutCardRef.current) {
-          const withoutItems = withoutCardRef.current.querySelectorAll('.cost-item');
-          withoutItems.forEach((item, i) => {
-            gsap.fromTo(item,
-              { opacity: 0.1, x: -20 },
-              {
-                opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
-                scrollTrigger: { trigger: item, start: "top 90%", toggleActions: "play none none reverse" }
-              }
-            );
+    // Wait for full layout settle before initializing ScrollTrigger
+    const initTimer = setTimeout(() => {
+      const ctx = gsap.context(() => {
+        if (isMobile) {
+          // Mobile: scroll-triggered reveal without pinning
+          if (withoutCardRef.current) {
+            const withoutItems = withoutCardRef.current.querySelectorAll('.cost-item');
+            withoutItems.forEach((item, i) => {
+              gsap.fromTo(item,
+                { opacity: 0.1, x: -20 },
+                {
+                  opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+                  scrollTrigger: { trigger: item, start: "top 90%", toggleActions: "play none none reverse" }
+                }
+              );
+            });
+          }
+          if (withCardRef.current) {
+            const withItems = withCardRef.current.querySelectorAll('.cost-item');
+            withItems.forEach((item, i) => {
+              gsap.fromTo(item,
+                { opacity: 0, x: 25 },
+                {
+                  opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+                  scrollTrigger: { trigger: item, start: "top 90%", toggleActions: "play none none reverse" }
+                }
+              );
+            });
+          }
+        } else {
+          // Desktop: pinned scrub timeline
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: "#the-problem",
+              start: "top top",
+              end: "+=200%",
+              scrub: 0.2,
+              pin: true,
+              pinSpacing: true,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+            },
           });
-        }
-        if (withCardRef.current) {
-          const withItems = withCardRef.current.querySelectorAll('.cost-item');
-          withItems.forEach((item, i) => {
-            gsap.fromTo(item,
-              { opacity: 0, x: 25 },
-              {
-                opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
-                scrollTrigger: { trigger: item, start: "top 90%", toggleActions: "play none none reverse" }
-              }
-            );
-          });
-        }
-      } else {
-        // Desktop: pinned scrub timeline
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: "#the-problem",
-            start: "top top",
-            end: "+=200%",
-            scrub: 0.5,
-            pin: true,
-            pinSpacing: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
 
-        if (withoutCardRef.current) {
-          const withoutItems = withoutCardRef.current.querySelectorAll('.cost-item');
-          withoutItems.forEach((item, i) => {
-            tl.fromTo(item,
-              { opacity: 0.1, x: -20 },
-              { opacity: 1, x: 0, duration: 0.15, ease: "power2.out" },
-              i * 0.08
-            );
-          });
+          if (withoutCardRef.current) {
+            const withoutItems = withoutCardRef.current.querySelectorAll('.cost-item');
+            withoutItems.forEach((item, i) => {
+              tl.fromTo(item,
+                { opacity: 0.1, x: -20 },
+                { opacity: 1, x: 0, duration: 0.15, ease: "power2.out" },
+                i * 0.08
+              );
+            });
+          }
+
+          if (withCardRef.current) {
+            const withItems = withCardRef.current.querySelectorAll('.cost-item');
+            withItems.forEach((item, i) => {
+              tl.fromTo(item,
+                { opacity: 0, x: 25 },
+                { opacity: 1, x: 0, duration: 0.15, ease: "power2.out" },
+                0.35 + i * 0.1
+              );
+            });
+          }
+
+          // Hold at end so items stay visible before unpin
+          tl.to({}, { duration: 0.3 });
         }
+      });
 
-        if (withCardRef.current) {
-          const withItems = withCardRef.current.querySelectorAll('.cost-item');
-          withItems.forEach((item, i) => {
-            tl.fromTo(item,
-              { opacity: 0, x: 25 },
-              { opacity: 1, x: 0, duration: 0.15, ease: "power2.out" },
-              0.35 + i * 0.1
-            );
-          });
-        }
+      ctxRef.current = ctx;
 
-        // Hold at end so items stay visible before unpin
-        tl.to({}, { duration: 0.3 });
-      }
-    });
+      // Recalculate after all images/fonts loaded
+      ScrollTrigger.refresh();
+    }, 100);
 
-    return () => ctx.revert();
+    return () => {
+      clearTimeout(initTimer);
+      if (ctxRef.current) ctxRef.current.revert();
+    };
   }, []);
 
   const withoutItems = [
