@@ -44,13 +44,12 @@ export default function CostOfInactionSection() {
           scrollTrigger: {
             trigger: "#the-problem",
             start: "top top",
-            end: "+=150%",
-            scrub: true,
+            end: "+=200%",
+            scrub: 0.5,
             pin: true,
             pinSpacing: true,
-            anticipatePin: 0,
+            anticipatePin: 1,
             invalidateOnRefresh: true,
-            fastScrollEnd: true,
           },
         });
 
@@ -59,8 +58,8 @@ export default function CostOfInactionSection() {
           withoutItems.forEach((item, i) => {
             tl.fromTo(item,
               { opacity: 0.1, x: -20 },
-              { opacity: 1, x: 0, duration: 0.12, ease: "none" },
-              i * 0.06
+              { opacity: 1, x: 0, duration: 0.15, ease: "power2.out" },
+              i * 0.08
             );
           });
         }
@@ -70,13 +69,14 @@ export default function CostOfInactionSection() {
           withItems.forEach((item, i) => {
             tl.fromTo(item,
               { opacity: 0, x: 25 },
-              { opacity: 1, x: 0, duration: 0.12, ease: "none" },
-              0.25 + i * 0.08
+              { opacity: 1, x: 0, duration: 0.15, ease: "power2.out" },
+              0.35 + i * 0.1
             );
           });
         }
 
-        tl.to({}, { duration: 0.15 });
+        // Hold at end so items stay visible before unpin
+        tl.to({}, { duration: 0.3 });
       }
     });
 
@@ -100,7 +100,7 @@ export default function CostOfInactionSection() {
   ];
 
   return (
-    <section id="the-problem" className="min-h-screen md:h-[100vh] w-full relative flex flex-col items-center bg-transparent py-20 md:py-0" style={{ willChange: 'transform' }}>
+    <section id="the-problem" className="min-h-screen md:h-screen w-full relative flex flex-col items-center bg-transparent py-20 md:py-0">
       {/* Ambient glows */}
       <div className="absolute top-[10%] left-[-15%] w-[55vw] h-[55vw] max-w-[750px] max-h-[750px] opacity-[0.15] mix-blend-screen pointer-events-none -rotate-6" style={{ background: 'radial-gradient(ellipse at center, rgba(178, 133, 27, 0.35) 0%, rgba(178, 133, 27, 0) 60%)' }} />
       <div className="absolute bottom-[5%] right-[-20%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] opacity-[0.12] mix-blend-screen pointer-events-none rotate-6" style={{ background: 'radial-gradient(ellipse at center, rgba(178, 133, 27, 0.3) 0%, rgba(178, 133, 27, 0) 55%)' }} />

@@ -64,13 +64,3 @@
 .cost-item {
   will-change: transform, opacity;
 }
-
-/* Pin container — GPU-accelerated layer for smooth ScrollTrigger pinning */
-.pin-spacer {
-  contain: layout style;
-}
-
-/* Reduce paint cost on heavy blend-mode glow elements */
-[style*="mix-blend"] {
-  contain: paint;
-}
