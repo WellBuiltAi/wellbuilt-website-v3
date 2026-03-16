@@ -74,7 +74,7 @@ export function Globe({
     dotColor = "rgba(178, 133, 27, ALPHA)",
     arcColor = "rgba(178, 133, 27, 0.5)",
     markerColor = "rgba(178, 133, 27, 1)",
-    autoRotateSpeed = 0.0005,
+    autoRotateSpeed = 0.0008,
     connections = DEFAULT_CONNECTIONS,
     markers = DEFAULT_MARKERS,
 }) {
