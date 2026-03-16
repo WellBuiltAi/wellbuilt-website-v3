@@ -69,7 +69,7 @@ export default function CostOfInactionSection() {
 
       {/* Header */}
       <div className="text-center mb-10 md:mb-20 pt-8 md:pt-32 relative z-20 shrink-0 px-6">
-        <h2 className="text-3xl md:text-[clamp(3rem,6.5vw,6rem)] lg:text-8xl font-sans font-bold uppercase tracking-tighter leading-[0.9] drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)]">
+        <h2 className="text-3xl md:text-[clamp(2.5rem,5.5vw,5rem)] lg:text-7xl font-sans font-bold uppercase tracking-tighter leading-[0.9] drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)]">
           <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#d4d4d4] to-[#737373] inline" style={{ filter: 'drop-shadow(0px 2px 2px rgba(255,255,255,0.3))' }}>YOUR OFFER </span>
           <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#fcd34d] via-[#b48618] to-[#5c4004] inline font-drama italic font-normal tracking-tight" style={{ filter: 'drop-shadow(0px 2px 2px rgba(228,172,38,0.4))' }}>SUPERCHARGED</span>
         </h2>
