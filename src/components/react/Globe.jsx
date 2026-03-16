@@ -3,42 +3,39 @@
 import { cn } from "../../lib/utils";
 import { useRef, useEffect, useCallback } from "react";
 
-// 12 evenly-distributed synthetic points: 3 rings × 4 points, offset 45° between rings
+// 12 points — evenly spaced base with organic jitter so it doesn't look too uniform
 const DEFAULT_MARKERS = [
-    // Top ring (40°N): 0°, 90°, 180°, -90°
-    { lat: 40, lng: 0 },
-    { lat: 40, lng: 90 },
-    { lat: 40, lng: 180 },
-    { lat: 40, lng: -90 },
-    // Equator ring (0°): 45°, 135°, -135°, -45° (offset 45°)
-    { lat: 0, lng: 45 },
-    { lat: 0, lng: 135 },
-    { lat: 0, lng: -135 },
-    { lat: 0, lng: -45 },
-    // Bottom ring (40°S): 0°, 90°, 180°, -90°
-    { lat: -40, lng: 0 },
-    { lat: -40, lng: 90 },
-    { lat: -40, lng: 180 },
-    { lat: -40, lng: -90 },
+    { lat: 44, lng: 7 },
+    { lat: 36, lng: 83 },
+    { lat: 42, lng: 174 },
+    { lat: 38, lng: -96 },
+    { lat: 5, lng: 52 },
+    { lat: -3, lng: 128 },
+    { lat: 4, lng: -141 },
+    { lat: -6, lng: -38 },
+    { lat: -37, lng: 11 },
+    { lat: -43, lng: 84 },
+    { lat: -38, lng: -174 },
+    { lat: -42, lng: -83 },
 ];
 
 const DEFAULT_CONNECTIONS = [
-    // Top ring → Equator diagonals
-    { from: [40, 0], to: [0, 45] },
-    { from: [40, 90], to: [0, 135] },
-    { from: [40, 180], to: [0, -135] },
-    { from: [40, -90], to: [0, -45] },
-    // Equator → Bottom ring diagonals
-    { from: [0, 45], to: [-40, 90] },
-    { from: [0, 135], to: [-40, 180] },
-    { from: [0, -135], to: [-40, -90] },
-    { from: [0, -45], to: [-40, 0] },
+    // Top → Equator diagonals
+    { from: [44, 7], to: [5, 52] },
+    { from: [36, 83], to: [-3, 128] },
+    { from: [42, 174], to: [4, -141] },
+    { from: [38, -96], to: [-6, -38] },
+    // Equator → Bottom diagonals
+    { from: [5, 52], to: [-43, 84] },
+    { from: [-3, 128], to: [-38, -174] },
+    { from: [4, -141], to: [-42, -83] },
+    { from: [-6, -38], to: [-37, 11] },
     // Top ring segments
-    { from: [40, 0], to: [40, 90] },
-    { from: [40, 180], to: [40, -90] },
+    { from: [44, 7], to: [36, 83] },
+    { from: [42, 174], to: [38, -96] },
     // Bottom ring segments
-    { from: [-40, 0], to: [-40, 90] },
-    { from: [-40, 180], to: [-40, -90] },
+    { from: [-37, 11], to: [-43, 84] },
+    { from: [-38, -174], to: [-42, -83] },
 ];
 
 function latLngToXYZ(lat, lng, radius) {
