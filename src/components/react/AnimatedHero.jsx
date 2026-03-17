@@ -53,7 +53,7 @@ export default function AnimatedHero() {
     <section ref={comp} className="relative w-full px-6 md:px-[6vw] lg:px-[4vw] xl:px-12 border-b border-white/10 flex flex-col justify-start pt-[28vh] pb-16 md:justify-center md:pt-0 md:pb-0 min-h-[100dvh] md:min-h-screen bg-transparent overflow-hidden">
       {/* Mobile Globe — centered behind hero text */}
       {isMobile && (
-        <div className="absolute top-[42%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[110vw] h-[110vw] pointer-events-none mix-blend-screen opacity-20 z-0">
+        <div className="absolute top-[42%] left-[55%] -translate-x-1/2 -translate-y-1/2 w-[110vw] h-[110vw] pointer-events-none mix-blend-screen opacity-20 z-0">
           <div className="absolute inset-0 bg-accent/3 blur-[40px] rounded-full pointer-events-none"></div>
           <Globe size={440} dotColor="rgba(178, 133, 27, ALPHA)" markerColor="rgba(178, 133, 27, 1)" arcColor="rgba(178, 133, 27, 0.4)" autoRotateSpeed={0.00055} />
         </div>
