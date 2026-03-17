@@ -55,7 +55,7 @@ export default function AnimatedHero() {
       {isMobile && (
         <div className="absolute top-[42%] left-[55%] -translate-x-1/2 -translate-y-1/2 w-[110vw] h-[110vw] pointer-events-none mix-blend-screen opacity-20 z-0">
           <div className="absolute inset-0 bg-accent/3 blur-[40px] rounded-full pointer-events-none"></div>
-          <Globe size={440} dotColor="rgba(178, 133, 27, ALPHA)" markerColor="rgba(178, 133, 27, 1)" arcColor="rgba(178, 133, 27, 0.4)" autoRotateSpeed={0.00055} />
+          <Globe size={440} dotColor="rgba(178, 133, 27, ALPHA)" markerColor="rgba(178, 133, 27, 1)" arcColor="rgba(178, 133, 27, 0.4)" autoRotateSpeed={0.00035} />
         </div>
       )}
 
