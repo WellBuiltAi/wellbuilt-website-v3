@@ -15,7 +15,7 @@ const RoadToRoiSection = () => {
     const timer = setTimeout(() => {
       ctx = gsap.context(() => {
         gsap.utils.toArray('.roi-step').forEach((step) => {
-          gsap.fromTo(step, 
+          gsap.fromTo(step,
             { y: 40, opacity: 0 },
             {
               y: 0,
@@ -25,7 +25,7 @@ const RoadToRoiSection = () => {
               scrollTrigger: {
                 trigger: step,
                 start: "top 85%",
-                toggleActions: "play none none reverse"
+                once: true
               }
             }
           );

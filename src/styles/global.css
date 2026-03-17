@@ -60,7 +60,4 @@
   transform: translateY(-1px);
 }
 
-/* Cost-of-inaction card items — start hidden for GSAP reveal */
-.cost-item {
-  will-change: transform, opacity;
-}
+/* Cost-of-inaction card items — GSAP handles compositing */
