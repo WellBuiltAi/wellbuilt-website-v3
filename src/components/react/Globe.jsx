@@ -133,7 +133,9 @@ export function Globe({
 
         rotYRef.current += autoRotateSpeed;
 
-        timeRef.current += 0.015;
+        // Scale dot travel speed by globe size so small globes don't look frantic
+        const baseRadius = 133; // radius at size=700 (350 * 0.38)
+        timeRef.current += 0.015 * (radius / baseRadius);
         const time = timeRef.current;
 
         ctx.clearRect(0, 0, w, h);
