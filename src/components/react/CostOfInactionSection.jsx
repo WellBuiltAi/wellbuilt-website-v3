@@ -135,7 +135,7 @@ export default function CostOfInactionSection() {
               </div>
               <div className="mt-8 pt-6 border-t border-accent/15 cost-item">
                 <Button
-                  onClick={() => document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => window.open('/book', '_blank')}
                   variant="default"
                   size="default"
                   className="w-full flex items-center justify-center gap-2"

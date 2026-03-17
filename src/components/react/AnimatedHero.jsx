@@ -88,7 +88,7 @@ export default function AnimatedHero() {
 
           <div className="flex flex-col items-start gap-4 w-full md:w-auto hero-col-anim border-t border-white/5 pt-5 md:pt-10">
             <Button
-              onClick={() => document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => window.open('/book', '_blank')}
               variant="default"
               size="default"
               className="flex items-center justify-center gap-1.5 text-[10px] md:text-base px-4 py-2 md:px-8 md:py-3"
