@@ -90,7 +90,7 @@ export default function CostOfInactionSection() {
                 <div className="w-10 h-10 rounded-full border border-red-500/40 bg-red-500/15 flex items-center justify-center">
                   <X size={18} className="text-red-400" />
                 </div>
-                <span className="font-sans text-lg font-bold text-red-400 uppercase tracking-wider">Without CloseStack</span>
+                <span className="font-sans text-lg font-bold text-red-400 uppercase tracking-wider">Without CloseStack™</span>
               </div>
               <div className="flex flex-col gap-5">
                 {withoutItems.map((item, i) => (
@@ -117,7 +117,7 @@ export default function CostOfInactionSection() {
                 <div className="w-10 h-10 rounded-full border border-accent/50 bg-accent/20 flex items-center justify-center shadow-[0_0_20px_rgba(228,172,38,0.4)]">
                   <Check size={18} className="text-accent" />
                 </div>
-                <span className="font-sans text-lg font-bold text-accent uppercase tracking-wider drop-shadow-[0_0_10px_rgba(228,172,38,0.5)]">With CloseStack</span>
+                <span className="font-sans text-lg font-bold text-accent uppercase tracking-wider drop-shadow-[0_0_10px_rgba(228,172,38,0.5)]">With CloseStack™</span>
               </div>
               <div className="flex flex-col gap-5">
                 {withItems.map((item, i) => (
@@ -135,7 +135,7 @@ export default function CostOfInactionSection() {
               </div>
               <div className="mt-8 pt-6 border-t border-accent/15 cost-item">
                 <Button
-                  onClick={() => window.open('/book', '_blank')}
+                  onClick={() => window.openBooking?.()}
                   variant="default"
                   size="default"
                   className="w-full flex items-center justify-center gap-2"

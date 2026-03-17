@@ -77,7 +77,7 @@ export default function VslSection() {
         {/* CTA */}
         <div className="flex justify-center w-full mt-4">
           <Button
-            onClick={() => window.open('/book', '_blank')}
+            onClick={() => window.openBooking?.()}
             variant="default"
             size="lg"
             className="w-auto flex items-center justify-center gap-2 text-[10px] md:text-lg px-4 py-2.5 md:px-8 md:py-4 shadow-[0_0_30px_rgba(178,133,27,0.4)] hover:shadow-[0_0_50px_rgba(178,133,27,0.7)]"
