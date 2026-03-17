@@ -19,7 +19,7 @@ export default function CostOfInactionSection() {
             { opacity: 0.1, x: -20 },
             {
               opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
-              scrollTrigger: { trigger: item, start: "top 90%", toggleActions: "play none none reverse" }
+              scrollTrigger: { trigger: item, start: "top 90%", once: true }
             }
           );
         });
@@ -31,7 +31,7 @@ export default function CostOfInactionSection() {
             { opacity: 0, x: 25 },
             {
               opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
-              scrollTrigger: { trigger: item, start: "top 90%", toggleActions: "play none none reverse" }
+              scrollTrigger: { trigger: item, start: "top 90%", once: true }
             }
           );
         });
