@@ -30,7 +30,7 @@ export default function AnimatedHero() {
       } else {
         setTitleNumber(titleNumber + 1);
       }
-    }, 3600);
+    }, 3960);
     return () => clearTimeout(timeoutId);
   }, [titleNumber, titles]);
 
@@ -82,7 +82,10 @@ export default function AnimatedHero() {
                     className="absolute left-0 whitespace-nowrap pb-2"
                     style={{ willChange: 'transform, opacity' }}
                     initial={{ opacity: 0, y: "100%" }}
-                    transition={{ type: "tween", duration: 0.65, ease: [0.25, 1, 0.5, 1] }}
+                    transition={{
+                      y: { type: "spring", stiffness: 40, damping: 18, mass: 1.2 },
+                      opacity: { duration: 0.6, ease: "easeInOut" }
+                    }}
                     animate={{
                       y: isCurrent ? "0%" : (isPrev ? "-100%" : "100%"),
                       opacity: isCurrent ? 1 : 0
