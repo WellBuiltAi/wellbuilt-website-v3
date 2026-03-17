@@ -79,7 +79,7 @@ export default function CostOfInactionSection() {
       <div className="flex-1 w-full max-w-[1400px] mx-auto flex items-start justify-center relative z-10 px-6 md:px-12">
         <div className="w-[88%] md:w-full grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 max-w-[1100px] mx-auto">
 
-          {/* WITHOUT Rev² */}
+          {/* WITHOUT CloseStack */}
           <div
             ref={withoutCardRef}
             style={{ backgroundColor: 'rgba(15, 10, 10, 0.85)' }}
@@ -90,7 +90,7 @@ export default function CostOfInactionSection() {
                 <div className="w-10 h-10 rounded-full border border-red-500/40 bg-red-500/15 flex items-center justify-center">
                   <X size={18} className="text-red-400" />
                 </div>
-                <span className="font-sans text-lg font-bold text-red-400 uppercase tracking-wider">Without Rev²</span>
+                <span className="font-sans text-lg font-bold text-red-400 uppercase tracking-wider">Without CloseStack</span>
               </div>
               <div className="flex flex-col gap-5">
                 {withoutItems.map((item, i) => (
@@ -105,7 +105,7 @@ export default function CostOfInactionSection() {
             </div>
           </div>
 
-          {/* WITH Rev² */}
+          {/* WITH CloseStack */}
           <div
             ref={withCardRef}
             style={{ backgroundColor: 'rgba(18, 14, 8, 0.85)' }}
@@ -117,7 +117,7 @@ export default function CostOfInactionSection() {
                 <div className="w-10 h-10 rounded-full border border-accent/50 bg-accent/20 flex items-center justify-center shadow-[0_0_20px_rgba(228,172,38,0.4)]">
                   <Check size={18} className="text-accent" />
                 </div>
-                <span className="font-sans text-lg font-bold text-accent uppercase tracking-wider drop-shadow-[0_0_10px_rgba(228,172,38,0.5)]">With Rev²</span>
+                <span className="font-sans text-lg font-bold text-accent uppercase tracking-wider drop-shadow-[0_0_10px_rgba(228,172,38,0.5)]">With CloseStack</span>
               </div>
               <div className="flex flex-col gap-5">
                 {withItems.map((item, i) => (

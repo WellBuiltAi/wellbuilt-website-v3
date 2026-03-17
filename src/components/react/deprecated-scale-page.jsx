@@ -144,7 +144,7 @@ export default function CostOfInactionSection() {
       <div className="flex-1 w-[95vw] max-w-[1300px] mx-auto flex flex-col items-center relative z-10 overflow-visible">
         <div className="w-full flex justify-between shrink-0 z-[2] relative px-[5%]">
 
-          {/* WITHOUT Rev² */}
+          {/* WITHOUT CloseStack */}
           <div
             ref={withoutCardRef}
             className="relative will-change-transform bg-[#0a0808]/95 backdrop-blur-xl border border-red-500/20 rounded-[1.5rem] p-5 lg:p-7"
@@ -156,7 +156,7 @@ export default function CostOfInactionSection() {
                 <div className="w-7 h-7 rounded-full border border-red-500/30 bg-red-500/10 flex items-center justify-center">
                   <X size={13} className="text-red-400" />
                 </div>
-                <span className="font-mono text-xs text-red-400/80 tracking-[0.2em] uppercase font-bold">Without Rev&sup2;</span>
+                <span className="font-mono text-xs text-red-400/80 tracking-[0.2em] uppercase font-bold">Without CloseStack</span>
               </div>
               <div className="flex flex-col gap-4">
                 {withoutItems.map((item, i) => (
@@ -171,7 +171,7 @@ export default function CostOfInactionSection() {
             </div>
           </div>
 
-          {/* WITH Rev² */}
+          {/* WITH CloseStack */}
           <div
             ref={withCardRef}
             className="relative will-change-transform bg-gradient-to-b from-[#141008]/95 to-[#0a0905]/95 backdrop-blur-2xl border border-accent/50 rounded-[1.5rem] p-5 lg:p-7 ring-1 ring-accent/10"
@@ -184,7 +184,7 @@ export default function CostOfInactionSection() {
                 <div className="w-8 h-8 rounded-full border border-accent/50 bg-accent/20 flex items-center justify-center shadow-[0_0_20px_rgba(228,172,38,0.4)]">
                   <Check size={15} className="text-accent" />
                 </div>
-                <span className="font-mono text-xs text-accent tracking-[0.2em] uppercase font-bold drop-shadow-[0_0_10px_rgba(228,172,38,0.5)]">With Rev&sup2;</span>
+                <span className="font-mono text-xs text-accent tracking-[0.2em] uppercase font-bold drop-shadow-[0_0_10px_rgba(228,172,38,0.5)]">With CloseStack</span>
               </div>
               <div className="flex flex-col gap-4">
                 {withItems.map((item, i) => (

@@ -43,7 +43,7 @@ export default function AnimatedHero() {
       {/* Mobile Globe — tucked behind text, right side */}
       <div className="absolute top-[52%] -translate-y-[50%] -right-[22%] w-[60vw] h-[60vw] md:hidden pointer-events-none mix-blend-screen opacity-25 z-0">
         <div className="absolute inset-0 bg-accent/3 blur-[40px] rounded-full pointer-events-none"></div>
-        <Globe size={280} dotColor="rgba(178, 133, 27, ALPHA)" markerColor="rgba(178, 133, 27, 1)" arcColor="rgba(178, 133, 27, 0.4)" autoRotateSpeed={0.00092} />
+        <Globe size={280} dotColor="rgba(178, 133, 27, ALPHA)" markerColor="rgba(178, 133, 27, 1)" arcColor="rgba(178, 133, 27, 0.4)" autoRotateSpeed={0.00055} />
       </div>
 
       <div className="relative z-10 w-full max-w-[1400px] mx-auto hero-col-anim flex flex-col lg:flex-row items-start lg:items-center justify-center lg:justify-between gap-6 lg:gap-4">
@@ -52,7 +52,7 @@ export default function AnimatedHero() {
           <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-8">
             <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
             <span className="font-mono text-[9px] md:text-[10px] text-accent tracking-[0.15em] md:tracking-[0.2em] uppercase border border-accent/20 rounded-full px-3 md:px-4 py-1 md:py-1.5 leading-snug">
-              <span className="md:hidden">Introducing Rev²</span>
+              <span className="md:hidden">Introducing CloseStack</span>
               <span className="hidden md:inline">Your offer has a ceiling. Our system removes it.</span>
             </span>
           </div>

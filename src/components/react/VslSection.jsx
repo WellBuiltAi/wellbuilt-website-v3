@@ -38,7 +38,7 @@ export default function VslSection() {
                 className="absolute inset-0 cursor-pointer flex items-center justify-center group"
                 onClick={() => setIsPlaying(true)}
               >
-                <img src="/vsl-thumbnail.jpg" alt="WellBuilt AI Rev² system walkthrough video thumbnail" loading="lazy" width="1200" height="675" className="absolute inset-0 w-full h-full object-cover z-0 opacity-70 group-hover:opacity-90 transition-opacity duration-300" />
+                <img src="/vsl-thumbnail.jpg" alt="WellBuilt AI CloseStack system walkthrough video thumbnail" loading="lazy" width="1200" height="675" className="absolute inset-0 w-full h-full object-cover z-0 opacity-70 group-hover:opacity-90 transition-opacity duration-300" />
                 <div className="relative z-10 w-16 h-16 md:w-20 md:h-20 bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 group-hover:bg-accent group-hover:border-accent shadow-2xl cursor-pointer">
                   <Play className="text-white w-6 h-6 md:w-8 md:h-8 ml-1 transition-colors duration-300 group-hover:text-background" fill="currentColor" />
                 </div>
@@ -47,7 +47,7 @@ export default function VslSection() {
               <iframe
                 src="https://drive.google.com/file/d/1fWvLzMY9XfUZndFc4aOG3Udd-I3PBAzS/preview"
                 className="absolute top-0 left-0 w-full h-full border-0"
-                title="WellBuilt AI Rev² system walkthrough"
+                title="WellBuilt AI CloseStack system walkthrough"
                 allow="autoplay; fullscreen"
                 allowFullScreen
               ></iframe>
