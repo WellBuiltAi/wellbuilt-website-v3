@@ -7,7 +7,7 @@ export default function VslSection() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <section id="vsl" className="relative w-full py-24 px-6 md:px-12 bg-transparent overflow-hidden">
+    <section id="vsl" className="relative w-full py-24 px-6 md:px-12 bg-transparent overflow-x-clip">
       <div className="max-w-[1400px] mx-auto flex flex-col">
 
         {/* HEADER */}
