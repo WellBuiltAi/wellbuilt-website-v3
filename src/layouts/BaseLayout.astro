@@ -82,33 +82,18 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://wellbuilt.ai');
 
   <slot />
 
-  <!-- Fillout Popup Modal — centered on screen -->
-  <div id="booking-overlay" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.75); backdrop-filter:blur(4px);">
-    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:90vw; max-width:600px; height:85vh; max-height:800px; border-radius:16px; overflow:hidden; background:#fff;">
-      <button onclick="closeBooking()" style="position:absolute; top:8px; right:8px; z-index:10; background:rgba(0,0,0,0.08); border:none; border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; color:#333;">&#10005;</button>
-      <iframe id="booking-frame" src="" style="width:100%; height:100%; border:none;" loading="lazy"></iframe>
-    </div>
-  </div>
+  <!-- Fillout Popup Embed — trigger hidden, opened via CTA buttons -->
+  <style>
+    #fillout-popup-trigger { position:absolute !important; width:1px !important; height:1px !important; overflow:hidden !important; clip:rect(0,0,0,0) !important; white-space:nowrap !important; border:0 !important; padding:0 !important; margin:-1px !important; }
+  </style>
+  <div id="fillout-popup-trigger" data-fillout-id="76huBbS4evus" data-fillout-embed-type="popup" data-fillout-dynamic-resize data-fillout-inherit-parameters data-fillout-domain="discovery.wellbuiltai.com" data-fillout-popup-size="medium"></div>
+  <script is:inline src="https://server.fillout.com/embed/v1/"></script>
   <script is:inline>
     window.openBooking = function() {
-      var overlay = document.getElementById('booking-overlay');
-      var frame = document.getElementById('booking-frame');
-      if (!frame.src || frame.src === window.location.href || frame.src === '') {
-        frame.src = 'https://discovery.wellbuiltai.com/76huBbS4evus';
-      }
-      overlay.style.display = 'block';
-      document.body.style.overflow = 'hidden';
+      var el = document.querySelector('[data-fillout-id="76huBbS4evus"]');
+      if (el) { el.click(); return; }
+      window.open('https://discovery.wellbuiltai.com/76huBbS4evus', '_blank');
     };
-    window.closeBooking = function() {
-      document.getElementById('booking-overlay').style.display = 'none';
-      document.body.style.overflow = '';
-    };
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeBooking();
-    });
-    document.getElementById('booking-overlay').addEventListener('click', function(e) {
-      if (e.target === this) closeBooking();
-    });
   </script>
 
   <Analytics />

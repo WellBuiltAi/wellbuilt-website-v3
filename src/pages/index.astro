@@ -17,7 +17,7 @@ import MobileFooter from '../components/mobile/MobileFooter.astro';
 
 <BaseLayout>
   <!-- DESKTOP VIEW -->
-  <div class="hidden md:block relative w-full min-h-screen bg-[#050505] text-white selection:bg-accent selection:text-background font-sans overscroll-none">
+  <div class="hidden md:block relative w-full min-h-screen bg-[#050505] text-white selection:bg-accent selection:text-background font-sans overscroll-none overflow-x-hidden">
     <BackgroundTexture />
     <AmbientGlowSystem />
     <div class="relative z-10 w-full">
@@ -32,7 +32,7 @@ import MobileFooter from '../components/mobile/MobileFooter.astro';
   </div>
 
   <!-- MOBILE VIEW -->
-  <div class="block md:hidden relative w-full bg-[#050505] text-white selection:bg-accent selection:text-background font-sans overscroll-none">
+  <div class="block md:hidden relative w-full bg-[#050505] text-white selection:bg-accent selection:text-background font-sans overscroll-none overflow-x-hidden">
     <BackgroundTexture />
     <AmbientGlowSystem />
     <div class="relative z-10 w-full">

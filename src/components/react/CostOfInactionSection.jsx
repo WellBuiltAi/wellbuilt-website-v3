@@ -62,7 +62,7 @@ export default function CostOfInactionSection() {
   ];
 
   return (
-    <section id="the-problem" className="w-full relative flex flex-col items-center bg-transparent py-20 md:py-28">
+    <section id="the-problem" className="w-full relative flex flex-col items-center bg-transparent py-20 md:py-28 overflow-hidden">
       {/* Ambient glows */}
       <div className="absolute top-[10%] left-[-15%] w-[55vw] h-[55vw] max-w-[750px] max-h-[750px] opacity-[0.15] mix-blend-screen pointer-events-none -rotate-6" style={{ background: 'radial-gradient(ellipse at center, rgba(178, 133, 27, 0.35) 0%, rgba(178, 133, 27, 0) 60%)' }} />
       <div className="absolute bottom-[5%] right-[-20%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] opacity-[0.12] mix-blend-screen pointer-events-none rotate-6" style={{ background: 'radial-gradient(ellipse at center, rgba(178, 133, 27, 0.3) 0%, rgba(178, 133, 27, 0) 55%)' }} />
